@@ -1,10 +1,10 @@
 class UploadController < ApplicationController
   def update
-  	# this is where I will want to pull in the 
-  	# system identity and IP address and update
-  	# the sqlite db
-
-  	Site.find_or_create_by_identity_and_address(params['identity'],params['address'])
-
+	site = Site.find_by_identity(params['identity'])
+	site = Site.new unless site
+	site.touch
+	site.identity = params['identity']
+	site.address = request.remote_ip
+	site.save
   end
 end

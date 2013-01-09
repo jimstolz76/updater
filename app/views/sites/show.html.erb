@@ -10,6 +10,13 @@
   <%= @site.address %>
 </p>
 
+<p>
+  <b>Last Updated:</b>
+  <%= distance_of_time_in_words(Time.now, @site.updated_at, true) + " ago" %><br>
+  <%= @site.updated_at %>
+</p>
 
-<%= link_to 'Edit', edit_site_path(@site) %> |
+
+<%= link_to 'Edit', edit_site_path(@site) %> 
+<%= link_to 'Destroy', @site, method: :delete, data: { confirm: 'Are your sure?' } %>
 <%= link_to 'Back', sites_path %>

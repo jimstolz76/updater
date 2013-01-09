@@ -1,26 +1,21 @@
+<%= stylesheet_link_tag "sites" %>
 <h1>Listing sites</h1>
 
 <table>
   <tr>
-    <th>Identity</th>
-    <th>Address</th>
-    <th>Updated</th>
-    <th></th>
-    <th></th>
+    <th><%= sortable "identity" %></th>
+    <th><%= sortable "address" %></th>
+    <th><%= sortable "updated_at", "Last Check-In" %></th>
   </tr>
 
 <% @sites.each do |site| %>
   <tr>
-    <td><%= site.identity %></td>
+    <td><%= link_to site.identity, site %></td>
     <td><%= site.address %></td>
-    <td><%= site.updated_at %></td>
-    <td><%= link_to 'Show', site %></td>
-    <td><%= link_to 'Edit', edit_site_path(site) %></td>
-    <td><%= link_to 'Destroy', site, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= distance_of_time_in_words(Time.now, site.updated_at, true) + " ago" %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Site', new_site_path %>
