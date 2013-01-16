@@ -16,7 +16,10 @@
   <%= @site.updated_at %>
 </p>
 
+<p>
+	<b>Port Being Tested:</b>
+	<%= @site.port %>
+</p>
 
-<%= link_to 'Edit', edit_site_path(@site) %> 
-<%= link_to 'Destroy', @site, method: :delete, data: { confirm: 'Are your sure?' } %>
+
 <%= link_to 'Back', sites_path %>
